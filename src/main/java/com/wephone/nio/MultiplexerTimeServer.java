@@ -84,6 +84,7 @@ public class MultiplexerTimeServer implements Runnable {
 
 
     /**
+     * key是一个关注集合，代表我们关注的注册在选择器上的channel状态
      * 处理得到的可用的key
      * SelectionKey的四个常量来表示：
      * SelectionKey.OP_CONNECT
