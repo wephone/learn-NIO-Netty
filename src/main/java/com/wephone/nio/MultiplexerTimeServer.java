@@ -25,7 +25,7 @@ public class MultiplexerTimeServer implements Runnable {
             selector=Selector.open();
             serverSocketChannel=ServerSocketChannel.open();
             serverSocketChannel.configureBlocking(false);
-            serverSocketChannel.socket().bind(new InetSocketAddress("127.0.0.1",port));
+            serverSocketChannel.socket().bind(new InetSocketAddress(port));
             //记得监听接收事件，刚忘加了 导致一直没有响应客户端的发送消息
             serverSocketChannel.register(selector,SelectionKey.OP_ACCEPT);
             System.out.println("时间服务器在"+port+"端口启动");
@@ -55,14 +55,18 @@ public class MultiplexerTimeServer implements Runnable {
                 while (it.hasNext()){
                     key=it.next();
                     it.remove();
-                    handleKey(key);
-                    //使用完关闭key和key对应的channel
-                    if (key!=null){
-                        key.cancel();
-                        if (key.channel()!=null){
-                            key.channel().close();
+                    try {
+                        handleKey(key);
+                    }catch (Exception e){
+                        if (key!=null){
+                            key.cancel();
+                            if (key.channel()!=null){
+                                key.channel().close();
+                            }
                         }
                     }
+
+
                 }
             } catch (IOException e) {
                 e.printStackTrace();

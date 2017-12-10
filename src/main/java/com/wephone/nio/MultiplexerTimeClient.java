@@ -78,7 +78,7 @@ public class MultiplexerTimeClient implements Runnable{
         //告知此键是否有效
         if (key.isValid()){
             SocketChannel sc= (SocketChannel) key.channel();
-            //检测是否处于连
+            //检测是否处于连接状态
             if (key.isConnectable()){
                 //这里检查下是否连接成功，对连接结果进行判断
                 if (sc.finishConnect()){
@@ -100,6 +100,7 @@ public class MultiplexerTimeClient implements Runnable{
                     System.out.println("现在时间是:"+body);
 //                        this.stop=true;
                 } else if (readBytes<0) {
+                    //有点奇怪这里秒变-1  原来还是28的 原因是服务端那边刚被我不小心处理完key就关闭了key和sc
                     key.cancel();
                     sc.close();
                 }
