@@ -26,6 +26,7 @@ public class AsyncTimeServer {
     }
 
     public void run(){
+        //accept方法的回调函数必须第一个泛型为AsynchronousSocketChannel
         serverSocketChannel.accept(this,new AcceptCompletionHandler());
         //调用await方法的时候，如果计数不为0，会阻塞自己的线程
         try {

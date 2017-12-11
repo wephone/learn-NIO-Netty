@@ -25,7 +25,7 @@ public class ReadCompletionHandler implements CompletionHandler<Integer,ByteBuff
         String timeStr= null;
         try {
             timeStr = new String(body,"UTF-8");
-            System.out.println("时间服务器接收到请求:"+body);
+            System.out.println("时间服务器接收到请求:"+timeStr);
             String currentTime="查询时间".equalsIgnoreCase(timeStr)
                     ? new Date(System.currentTimeMillis()).toString():"请求有误";
             doWrite(currentTime);
