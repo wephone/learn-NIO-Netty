@@ -22,7 +22,7 @@ public class TimeServer {
             b.group(bossGroup,workerGroup)
                     .channel(NioServerSocketChannel.class)
                     .option(ChannelOption.SO_BACKLOG,1024)//输入连接指示（对连接的请求）的最大队列长度被设置为 backlog 参数。如果队列满时收到连接指示，则拒绝该连接。
-                    .childHandler(new ChildChannelMain());
+                    .childHandler(new ChildChannelMain());//绑定IO事件处理类
             //绑定端口 同步等待成功
             ChannelFuture future=b.bind(port).sync();
             System.out.println("时间服务器在"+port+"端口启动");
