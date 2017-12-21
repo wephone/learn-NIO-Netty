@@ -22,7 +22,7 @@ public class TimeClientMain {
                         @Override
                         protected void initChannel(SocketChannel socketChannel) throws Exception {
                             //initChannel的作用是 当创建socketChannel成功之后，在进行初始化时，将对应的回调处理类设置到pipeline里，用于处理网络IO事件
-                            socketChannel.pipeline().addLast(new TimeClinetHandler());
+                            socketChannel.pipeline().addLast(new TimeClientHandler());
                         }
                     });
             //发起异步连接 调用同步方法等待连接成功

@@ -7,11 +7,11 @@ import io.netty.channel.ChannelHandlerContext;
 
 import java.util.logging.Logger;
 
-public class TimeClinetHandler extends ChannelHandlerAdapter {
-    private static final Logger logger=Logger.getLogger(TimeClinetHandler.class.getName());
+public class TimeClientHandler extends ChannelHandlerAdapter {
+    private static final Logger logger=Logger.getLogger(TimeClientHandler.class.getName());
     private final ByteBuf firstMessage;
 
-    public TimeClinetHandler() {
+    public TimeClientHandler() {
         byte[] req="查询时间".getBytes();
         firstMessage= Unpooled.buffer(req.length);
         firstMessage.writeBytes(req);
