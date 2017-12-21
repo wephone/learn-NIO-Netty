@@ -1,4 +1,4 @@
-package com.wephone.nio;
+package com.wephone.Nio;
 
 public class NioTimerClientMain {
     public static void main(String[] args){

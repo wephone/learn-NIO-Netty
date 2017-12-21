@@ -1,4 +1,4 @@
-package com.wephone.nettyDemo;
+package com.wephone.NettyDemo;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;

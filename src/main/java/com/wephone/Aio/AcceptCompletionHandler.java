@@ -1,16 +1,14 @@
-package com.wephone.aio;
+package com.wephone.Aio;
 
-import java.nio.Buffer;
 import java.nio.ByteBuffer;
-import java.nio.channels.AsynchronousServerSocketChannel;
 import java.nio.channels.AsynchronousSocketChannel;
 import java.nio.channels.CompletionHandler;
 
 /**
  * 接收成功时的异步接口回调
  * JDK底层通过线程池ThreadPoolExecutor来执行回调通知，
- * 异步回调通知类由sun.nio.ch.AsynchronousChannelGroupImpl实现，
- * 它经过层层调用，最终回调com.phei.netty.aio.AsyncTimeClientHandler$1.completed方法，完成回调通知。
+ * 异步回调通知类由sun.Nio.ch.AsynchronousChannelGroupImpl实现，
+ * 它经过层层调用，最终回调com.phei.netty.Aio.AsyncTimeClientHandler$1.completed方法，完成回调通知。
  * 异步Socket Channel是被动执行对象，我们不需要像NIO编程那样创建一个独立的I/O线程来处理读写操作。
  * 对于AsynchronousServerSocketChannel和AsynchronousSocketChannel它们都由JDK底层的线程池负责回调并驱动读写操作。
  * 正因为如此，基于NIO 2.0新的异步非阻塞Channel进行编程比NIO编程更为简单。

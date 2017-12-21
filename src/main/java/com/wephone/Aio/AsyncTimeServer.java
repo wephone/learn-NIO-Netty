@@ -1,4 +1,4 @@
-package com.wephone.aio;
+package com.wephone.Aio;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;

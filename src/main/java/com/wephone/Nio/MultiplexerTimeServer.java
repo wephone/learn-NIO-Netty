@@ -1,4 +1,4 @@
-package com.wephone.nio;
+package com.wephone.Nio;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -102,7 +102,7 @@ public class MultiplexerTimeServer implements Runnable {
                 ServerSocketChannel serverSocketChannel1= (ServerSocketChannel) key.channel();
                 //通过的accept接收客户端的连接请求并创建对象 相当于完成了TCP的三次握手
                 SocketChannel socketChannel=serverSocketChannel1.accept();
-                //注意别设置成服务端的通道了 前面设置过了 再设置一次变成了java.nio.channels.IllegalBlockingModeException
+                //注意别设置成服务端的通道了 前面设置过了 再设置一次变成了java.Nio.channels.IllegalBlockingModeException
                 socketChannel.configureBlocking(false);
                 //向注册器注册这个客户端通道 监听读事件
                 socketChannel.register(selector,SelectionKey.OP_READ);

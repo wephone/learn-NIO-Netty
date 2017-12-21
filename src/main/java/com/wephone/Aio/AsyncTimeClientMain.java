@@ -1,4 +1,4 @@
-package com.wephone.aio;
+package com.wephone.Aio;
 
 public class AsyncTimeClientMain {
     public static void main(String[] args){

@@ -1,4 +1,4 @@
-package com.wephone.nettyDemo;
+package com.wephone.NettyDemo;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;

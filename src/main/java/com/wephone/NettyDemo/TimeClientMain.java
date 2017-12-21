@@ -1,4 +1,4 @@
-package com.wephone.nettyDemo;
+package com.wephone.NettyDemo;
 
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ChannelFuture;
@@ -28,7 +28,7 @@ public class TimeClientMain {
             //发起异步连接 调用同步方法等待连接成功
             ChannelFuture f=b.connect(host,port).sync();
             f.channel().closeFuture().sync();
-            System.out.println("上一句会阻塞住");
+            System.out.println("上一句会阻塞住直到服务端关闭连接");
         } catch (InterruptedException e) {
             e.printStackTrace();
             group.shutdownGracefully();

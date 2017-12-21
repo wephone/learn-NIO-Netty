@@ -1,4 +1,4 @@
-package com.wephone.nettyDemo;
+package com.wephone.NettyDemo;
 
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.socket.SocketChannel;
