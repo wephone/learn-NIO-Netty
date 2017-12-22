@@ -31,6 +31,8 @@
 - 同样是用channel和buffer进行读写
 - 配置线程组
 - 同样使用回调来处理相应的事件 例如channelRead等
+- 启动辅助类的childHandler,handler方法也是设置回调 在在进行初始化时，将对应的回调处理类设置到pipeline里，用于处理网络IO事件
+- socketChannel.pipeline().addLast();可以添加回调对象(处理channelRead等)和编码器
 - 不需要另开线程进行轮询监听事件
 - netty框架的nio操作比元素nio简便很多
 
@@ -38,7 +40,9 @@
 - TCP底层不了解上层业务数据,会根据TCP缓冲区的实际情况进行包的划分
 - 会导致一个大数据包被分为多个接收到，或者多个小包被合成一起接收到，或包含了其他数据包的部分信息等等，称为读写半包
 - 可在应用层通过报文固定长不够补空格,包尾加换行符分割,或将消息分为消息头消息体，消息头标明报文长度等来解决
-- netty可通过在initChannel里设置LineBasedFrameDecoder和StringDecoder等其他分隔符编码器来解决
+- netty可通过在initChannel里pipeline().addLast设置LineBasedFrameDecoder和StringDecoder等其他分隔符编码器来解决
 - LineBasedFrameDecoder就是判断"\n" 如果有 则以此作为结束位置，从可读索引到结束位置就组成了一行(一个完整包)
-- StringDecoder就是将接收到的对象转换为字符串
+- StringDecoder就是将接收到的对象转换为字符串,例如在channelRead回调里把ByteBuf自动转换为String再回调给用户
 - LineBasedFrameDecoder+StringDecoder组合就是按行切换的文本解码器
+- DelimiterBasedFrameDecoder 自动完成以分隔符做结束标志的消息的解码(仍需设置单条消息最大长度，达到该长度后仍然没有查找到分隔符时就抛出异常)
+- FixedLengthFrameDecoder自动完成对定长消息的解码
