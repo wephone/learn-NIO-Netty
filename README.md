@@ -26,3 +26,19 @@
 - result注释里 The result of the I/O operation.
 - 回调接口也会返回这个参数
 - 我理解为返回IO操作的结果 如Integer AsynchronousSocketChannel等
+
+## Netty
+- 同样是用channel和buffer进行读写
+- 配置线程组
+- 同样使用回调来处理相应的事件 例如channelRead等
+- 不需要另开线程进行轮询监听事件
+- netty框架的nio操作比元素nio简便很多
+
+## TCP粘包拆包
+- TCP底层不了解上层业务数据,会根据TCP缓冲区的实际情况进行包的划分
+- 会导致一个大数据包被分为多个接收到，或者多个小包被合成一起接收到，或包含了其他数据包的部分信息等等，称为读写半包
+- 可在应用层通过报文固定长不够补空格,包尾加换行符分割,或将消息分为消息头消息体，消息头标明报文长度等来解决
+- netty可通过在initChannel里设置LineBasedFrameDecoder和StringDecoder等其他分隔符编码器来解决
+- LineBasedFrameDecoder就是判断"\n" 如果有 则以此作为结束位置，从可读索引到结束位置就组成了一行(一个完整包)
+- StringDecoder就是将接收到的对象转换为字符串
+- LineBasedFrameDecoder+StringDecoder组合就是按行切换的文本解码器
